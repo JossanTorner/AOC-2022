@@ -33,7 +33,22 @@ fun getSum(list : MutableList<String>) : Long {
     return accSum(0, 0)
 }
 
+// lösning jag hittat på nätet
+
+fun part1(list: MutableList<String>) : Long = list.map { word ->
+    word.substring(0 until word.length / 2).toCharArray() to word.substring(word.length/2).toCharArray() }
+        .flatMap { (first, second) -> first intersect second.toSet() }.sumOf { it.toScore() }.toLong()
+
+fun Char.toScore():Int =
+    if(this.isUpperCase()) {
+        this.code - 'A'.code + 27
+    } else{
+        this.code - 'a'.code + 1
+    }
+
 fun main(){
 
     println(getSum(getData()))
+
+    println(part1(getData()))
 }
