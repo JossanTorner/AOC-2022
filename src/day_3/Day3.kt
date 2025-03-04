@@ -13,6 +13,7 @@ fun getData() : MutableList<String> {
     return data
 }
 
+// tailrec fun jag gjort själv
 fun getSum(list : MutableList<String>) : Long {
     tailrec fun accSum(index : Int, sum : Long) : Long{
         if (index >= list.size) return sum
@@ -34,9 +35,8 @@ fun getSum(list : MutableList<String>) : Long {
 }
 
 // lösning jag hittat på nätet
-
 fun part1(list: MutableList<String>) : Long = list.map { word ->
-    word.substring(0 until word.length / 2).toCharArray() to word.substring(word.length/2).toCharArray() }
+    word.substring(0..< word.length / 2).toCharArray() to word.substring(word.length/2).toCharArray() }
         .flatMap { (first, second) -> first intersect second.toSet() }.sumOf { it.toScore() }.toLong()
 
 fun Char.toScore():Int =
